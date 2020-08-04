@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "A webserver that contains all the learnsets of every Pokemon in Gen 8 thus far.",
   "main": "server.js",
-  "type": "module",
   "scripts": {
     "test": "node server.js",
     "start": "node server.js"
