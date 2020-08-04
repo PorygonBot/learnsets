@@ -45,4 +45,4 @@ app.get('/:name', async (req, res) => {
 	}
 });
 
-app.listen(process.env.port);
+app.listen(process.env.PORT);
