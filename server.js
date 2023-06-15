@@ -1,6 +1,7 @@
 const express = require("express");
 const { Dex } = require("@pkmn/dex");
 const { Generations } = require("@pkmn/data");
+require("dotenv").config();
 
 const app = express();
 const gens = new Generations(Dex);
@@ -87,4 +88,6 @@ app.get("/:pokemon", async (req, res) => {
     }
 });
 
-app.listen(process.env.PORT);
+app.listen(process.env.PORT, () => {
+    console.log("Listening on " + process.env.PORT);
+});
