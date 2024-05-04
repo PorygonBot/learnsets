@@ -1,21 +1,26 @@
 {
-  "name": "learnsets",
-  "version": "1.0.0",
-  "description": "A webserver that contains all the learnsets of every Pokemon in Gen 8 thus far.",
-  "main": "server.js",
-  "scripts": {
-    "test": "node server.js",
-    "start": "node server.js"
-  },
-  "keywords": [
-    "pokemon"
-  ],
-  "author": "harbar20",
-  "license": "GPL-3.0-or-later",
-  "dependencies": {
-    "@pkmn/data": "^0.3.0",
-    "@pkmn/dex": "^0.3.0",
-    "dotenv": "^16.1.4",
-    "express": "^4.17.1"
-  }
+    "name": "learnsets",
+    "version": "1.0.0",
+    "description": "A webserver that contains all the learnsets of every Pokemon in Gen 8 thus far.",
+    "main": "server.js",
+    "scripts": {
+        "start": "tsc && node dist/server.js"
+    },
+    "keywords": [
+        "pokemon"
+    ],
+    "author": "harbar20",
+    "license": "GPL-3.0-or-later",
+    "dependencies": {
+        "@pkmn/data": "^0.9.3",
+        "@pkmn/dex": "^0.9.3",
+        "dotenv": "^16.1.4",
+        "express": "^4.17.1"
+    },
+    "devDependencies": {
+        "@types/express": "^4.17.21",
+        "ts-node-dev": "^2.0.0",
+        "typescript": "^5.4.5"
+    },
+    "type": "module"
 }
