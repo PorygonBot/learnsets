@@ -8,18 +8,23 @@ const app = express();
 const gens = new Generations(Dex);
 const NUM_GENERATIONS: GenerationNum = 9;
 
-const getLearnset = async (pokemonName: string) => {
+const getLearnset = async (pokemonName: string, formeLevel: number = 0) => {
     let learnset = new Set<string>();
+
     for (let i: GenerationNum = 1; i <= NUM_GENERATIONS; i++) {
         const gen = gens.get(i);
 
         let pokemon = gen.species.get(pokemonName);
         if (!pokemon) continue;
 
-        // If the pokemon is an alternate form
         if (pokemon.changesFrom) {
-            pokemon = gen.species.get(pokemon.changesFrom);
-            if (!pokemon) continue;
+            const learnsetChangesFrom = await getLearnset(
+                pokemon.changesFrom,
+                formeLevel + 1
+            );
+            if (learnsetChangesFrom) {
+                learnsetChangesFrom.forEach((move) => learnset.add(move));
+            }
         }
 
         const learnsetMon = await gen.learnsets.get(pokemonName);
@@ -32,12 +37,6 @@ const getLearnset = async (pokemonName: string) => {
             if (!learnsetPrevo) continue;
             learnsetPrevo.forEach((move) => learnset.add(move));
         }
-
-        pokemon.formes?.forEach(async (forme) => {
-            const learnsetForme = await getLearnset(forme);
-            if (!learnsetForme) return;
-            learnsetForme.forEach((move) => learnset.add(move));
-        });
     }
 
     return learnset;
