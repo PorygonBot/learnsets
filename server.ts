@@ -56,6 +56,8 @@ app.get("/:pokemon", async (req, res) => {
     if (pokemon !== "favicon.ico") {
         const learnsetMon = await getLearnset(pokemon);
 
+        console.log("Got learnset for: " + pokemon);
+
         res.json(Array.from(learnsetMon));
     }
 });
